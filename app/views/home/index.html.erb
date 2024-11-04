@@ -1,0 +1,62 @@
+<%= render 'shared/header' %>
+
+<section id="services" class="bg-white py-12 mt-10">
+  <div class="container mx-auto text-center px-5">
+    <!-- Center-Aligned Title -->
+    <h2 class="text-4xl font-bold mb-4">About GA Multi Service</h2>
+    <p class="text-lg mb-8">GA Multi Service offers friendly, fast, and reliable appliance repair. Our technicians are factory trained and certified, specialized in various appliance repairs. We guarantee prompt resolution and satisfaction.</p>
+    <p class="text-lg mb-12">Our mission is to provide high-quality service with a personal touch. We aim to be the leading provider of home appliance repair services in the Atlanta area and beyond.</p>
+
+    <!-- Image Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto max-w-4xl">
+      <img src="assets/washing_machine_maintenance.webp" alt="Appliance repair" class="w-full rounded-lg shadow-md">
+      <img src="assets/fridge.webp" alt="Appliance maintenance" class="w-full rounded-lg shadow-md">
+      <img src="assets/mikrowave.webp" alt="Kitchen appliances" class="w-full rounded-lg shadow-md">
+      <img src="assets/loundry.webp" alt="Laundry appliances" class="w-full rounded-lg shadow-md">
+    </div>
+  </div>
+</section>
+
+<%= render 'home/why_us_section' %>
+
+
+
+<section id='contact' class="bg-navy text-white py-12">
+  <div class="container mx-auto text-center px-5">
+    <h2 class="text-4xl font-bold mb-4">Contact Us</h2>
+    <p class="text-lg mb-8">Have a question or need assistance?</p>
+    <!-- Contact Form -->
+    <form class="max-w-md mx-auto grid grid-cols-1 gap-4">
+      <input type="text" placeholder="Name" class="p-3 rounded bg-white text-black placeholder-gray-500">
+      <input type="text" placeholder="Phone" class="p-3 rounded bg-white text-black placeholder-gray-500">
+      <textarea placeholder="Message" class="p-3 rounded bg-white text-black placeholder-gray-500"></textarea>
+      <button type="submit" class="bg-orange text-white py-2 px-6 rounded hover:bg-brown">Submit</button>
+    </form>
+    <!-- Contact Information -->
+    <div class="mt-8">
+      <p class="text-2xl font-bold">+1 (470) 469-9939</p>
+      <p>4775 Fourth Rail LN, GA 30040</p>
+    </div>
+  </div>
+</section>
+<section class="bg-cream py-12">
+  <h2 class="text-4xl font-bold text-center mb-8">What Our Customers Say</h2>
+  <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-5">
+    <div>
+      <p class="text-lg">I was very pleased with the service from GA Multi Service. They were able to quickly and efficiently repair my washing machine, and the technician was very friendly and professional.</p>
+      <p class="font-semibold mt-2">John S.</p>
+    </div>
+    <div>
+      <p class="text-lg">GA Multi Service did a great job repairing my refrigerator.</p>
+      <p class="font-semibold mt-2">Jane D.</p>
+    </div>
+    <!-- Add more testimonials as necessary -->
+  </div>
+</section>
+
+
+
+<%= render 'shared/footer' %>
+<%= render 'bookings/booking_modal' %>
+<%= render 'shared/multi_step_modal' %>
+

@@ -1,0 +1,97 @@
+<div id="bookingModal" class="fixed inset-0 bg-navy bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-cream rounded-lg shadow-lg p-6 w-full max-w-lg relative">
+    <span id="close_modal" class="absolute top-3 right-3 text-navy text-xl cursor-pointer">&times;</span>
+
+    <!-- Step Indicator Line -->
+    <div class="flex items-center justify-between mb-4">
+      <% [1, 2, 3, 4].each do |step| %>
+        <div class="flex items-center relative">
+          <div id="stepIndicator<%= step %>" class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center font-bold progress-item"><%= step %></div>
+          <% if step < 4 %>
+            <div class="flex-grow border-t-2 border-navy"></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Step 1: Appliance Details -->
+    <div id="step1" class="step" data-step="1">
+      <h2 class="text-2xl font-bold text-navy mb-4">Choose Appliance Details</h2>
+      <label for="appliance_id" class="block mb-2">Appliance:</label>
+      <select name="booking[appliance_id]" id="appliance_id" class="block w-full border rounded mb-4">
+        <% @appliances.each do |appliance| %>
+          <option value="<%= appliance.id %>"><%= appliance.name %></option>
+        <% end %>
+      </select>
+
+      <label for="manufacturer_id" class="block mb-2">Manufacturer:</label>
+      <select name="booking[manufacturer_id]" id="manufacturer_id" class="block w-full border rounded mb-4">
+        <% @manufacturers.each do |manufacturer| %>
+          <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+        <% end %>
+      </select>
+
+      <label for="model" class="block mb-2">Model:</label>
+      <input type="text" name="booking[model]" id="model" class="block w-full border rounded mb-4">
+
+      <label for="age" class="block mb-2">Age of Appliance:</label>
+      <input type="text" name="booking[age]" id="age" class="block w-full border rounded mb-4">
+      <button type="button" class="next-button bg-orange text-white py-2 px-4 rounded">Next</button>
+    </div>
+
+    <!-- Step 2: Address Details -->
+    <div id="step2" class="step hidden" data-step="2">
+      <h2 class="text-2xl font-bold text-navy mb-4">Enter Address Details</h2>
+      <label for="street" class="block mb-2">Street:</label>
+      <input type="text" name="client[street]" id="street" class="block w-full border rounded mb-4">
+
+      <label for="building_number" class="block mb-2">Building Number:</label>
+      <input type="text" name="client[building_number]" id="building_number" class="block w-full border rounded mb-4">
+
+      <label for="city" class="block mb-2">City:</label>
+      <input type="text" name="client[city]" id="city" class="block w-full border rounded mb-4">
+
+      <label for="postcode" class="block mb-2">Postcode:</label>
+      <input type="text" name="client[postcode]" id="postcode" class="block w-full border rounded mb-4">
+      <div class="flex justify-between">
+        <button type="button" class="prev-button bg-brown text-white py-2 px-4 rounded">Back</button>
+        <button type="button" class="next-button bg-orange text-white py-2 px-4 rounded">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Contact Information -->
+    <div id="step3" class="step hidden" data-step="3">
+      <h2 class="text-2xl font-bold text-navy mb-4">Enter Contact Information</h2>
+      <label for="full_name" class="block mb-2">Full Name:</label>
+      <input type="text" name="client[full_name]" id="full_name" class="block w-full border rounded mb-4">
+
+      <label for="phone" class="block mb-2">Phone:</label>
+      <input type="text" name="client[phone]" id="phone" class="block w-full border rounded mb-4">
+
+      <label for="email" class="block mb-2">Email:</label>
+      <input type="email" name="client[email]" id="email" class="block w-full border rounded mb-4">
+      <div class="flex justify-between">
+        <button type="button" class="prev-button bg-brown text-white py-2 px-4 rounded">Back</button>
+        <button type="button" class="next-button bg-orange text-white py-2 px-4 rounded">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Schedule Date and Time -->
+    <div id="step4" class="step hidden" data-step="4">
+      <h2 class="text-2xl font-bold text-navy mb-4">Schedule Date and Time</h2>
+      <label for="repair_date" class="block mb-2">Repair Date:</label>
+      <input type="date" name="booking[repair_date]" id="repair_date" class="block w-full border rounded mb-4">
+
+      <label for="half_of_day" class="block mb-2">Preferred Time:</label>
+      <select name="booking[half_of_day]" id="half_of_day" class="block w-full border rounded mb-4">
+        <option value="morning">Morning</option>
+        <option value="afternoon">Afternoon</option>
+      </select>
+      <div class="flex justify-between">
+        <button type="button" class="prev-button bg-brown text-white py-2 px-4 rounded">Back</button>
+        <button type="submit" class="bg-teal text-white py-2 px-4 rounded">Book Repair Service</button>
+      </div>
+    </div>
+
+  </div>
+</div>

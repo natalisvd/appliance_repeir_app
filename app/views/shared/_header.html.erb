@@ -1,0 +1,33 @@
+<!-- app/views/shared/_header.html.erb -->
+<header class="bg-navy text-center h-screen">
+  <nav class="container mx-auto flex justify-between items-center p-5">
+    <!-- Logo on the left -->
+    <%= link_to image_tag("logo.svg", alt: "Company Logo", class: "h-8"), root_path %>
+
+    <!-- Links on the right -->
+    <div class="flex gap-5 text-white">
+      <%= link_to "Home", "#hero", class: "hover:text-cream" %>
+      <%= link_to "Services", "#services", class: "hover:text-cream" %>
+      <%= link_to "Why Us", "#why_us", class: "hover:text-cream" %>
+      <%= link_to "Contact", "#contact", class: "hover:text-cream" %>
+    </div>
+  </nav>
+
+  <!-- Centering Content in #hero -->
+  <div id="hero" class="flex flex-col items-center justify-center text-center h-full p-10 bg-cover bg-center text-white relative" style="background-image: url(<%= asset_path 'hero_background.png' %>);">
+    <!-- Dark Overlay Background -->
+    <div class="absolute inset-0 bg-black opacity-60"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <h1 class="text-6xl font-bold mb-4">Fast & Reliable Home Appliance Repair Services</h1>
+      <p class="text-3xl mb-6">Dependable appliance repair, delivered to your doorstep with ease.</p>
+      <!-- Button with Orange Background and White Text -->
+<!--      <button id="get-in-touch-button" class="bg-orange hover:bg-brown text-white py-2 px-4 rounded" onclick="openModal()">Get in Touch</button>-->
+      <button id='open_booking_modal' onclick="openModal()" class="bg-orange hover:bg-brown text-white py-2 px-4 rounded">
+        Book Repair Service
+      </button>
+      <p class="text-sm mt-4 text-gray-200">Get your appliances running smoothly again!</p>
+    </div>
+  </div>
+</header>
