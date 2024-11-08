@@ -39,3 +39,24 @@ appliances = [
 appliances.each do |name|
   Appliance.find_or_create_by(name: name)
 end
+
+zip_to_city_map = {
+  "30040" => "Cumming",
+  "30022" => "Alpharetta",
+  "30328" => "Sandy Springs",
+  "30060" => "Marietta",
+  "30066" => "Marietta",
+  "30114" => "Canton",
+  "30096" => "Duluth",
+  "30519" => "Buford",
+  "30518" => "Buford",
+  "30062" => "Marietta",
+  "30305" => "Atlanta",
+  "30319" => "Brookhaven",
+  "30005" => "Alpharetta",
+  "30041" => "Cumming"
+}
+
+zip_to_city_map.each do |zip_code, city|
+  ZipCodeMapping.find_or_create_by(zip_code: zip_code, city: city)
+end

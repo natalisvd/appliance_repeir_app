@@ -1,100 +1,107 @@
-<div id="bookingModal" class="fixed inset-0 bg-navy bg-opacity-50 flex items-center justify-center hidden z-50">
-  <div class="bg-cream rounded-lg shadow-lg p-6 w-full max-w-lg relative">
-<!--    <span id="close_modal" class="absolute top-3 right-3 text-navy text-xl cursor-pointer">&times;</span>-->
+<turbo-frame id="booking_modal1">
+  <button id="open_booking_modal" data-action="click->booking#openModal" class="bg-orange text-white py-2 px-4 rounded">Book Now</button>
+  <!-- app/views/bookings/_booking_modal.html.erb -->
+  <div id="bookingModal" data-booking-target="modal" class="fixed inset-0 bg-navy bg-opacity-50 flex items-center justify-center hidden z-50 text-black">
+    <div class="bg-cream rounded-lg shadow-lg p-6 w-full max-w-lg relative">
+      <!-- Close button -->
+      <button id="close_modal" type="button" class="absolute top-3 right-3 text-navy text-xl cursor-pointer" data-action="click->booking#closeModal">&times;</button>
 
-    <!-- Step Indicator Line -->
-    <div class="flex items-center justify-between mb-4">
-      <% [1, 2, 3].each do |step| %>
-        <div class="flex items-center relative">
-          <div id="stepIndicator<%= step %>" class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center font-bold progress-item"><%= step %></div>
-          <% if step < 3 %>
-            <div class="flex-grow border-t-2 border-navy"></div>
+      <!-- Form Element -->
+      <form data-action="submit->booking#handleSubmit">
+        <!-- Step Indicator Line -->
+        <div class="flex items-center justify-between mb-4">
+          <% [1, 2, 3].each do |step| %>
+            <div class="flex items-center relative">
+              <div id="stepIndicator<%= step %>" class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center font-bold progress-item"><%= step %></div>
+              <% if step < 3 %>
+                <div class="flex-grow border-t-2 border-navy"></div>
+              <% end %>
+            </div>
           <% end %>
         </div>
-      <% end %>
-    </div>
 
-    <!-- Step 1: Appliance Details -->
-    <div id="step1" class="step" data-step="1">
-      <h2 class="text-2xl font-bold text-navy mb-4">Choose Appliance Details</h2>
+        <!-- Step 1: Appliance Details -->
+        <div id="step1" class="step" data-step="1">
+          <h2 class="text-2xl font-bold text-navy mb-4">Choose Appliance Details</h2>
 
-      <label for="appliance_id" class="block mb-2">Appliance:</label>
-      <select name="booking[appliance_id]" id="appliance_id" class="block w-full border rounded-lg p-3 mb-4">
-        <% @appliances.each do |appliance| %>
-          <option value="<%= appliance.id %>"><%= appliance.name %></option>
-        <% end %>
-      </select>
+          <label for="appliance_id" class="block mb-2">Appliance:</label>
+          <select name="booking[appliance_id]" id="appliance_id" class="block w-full border rounded-lg p-3 mb-4">
+            <% @appliances.each do |appliance| %>
+              <option value="<%= appliance.id %>"><%= appliance.name %></option>
+            <% end %>
+          </select>
 
-      <label for="manufacturer_id" class="block mb-2">Manufacturer:</label>
-      <select name="booking[manufacturer_id]" id="manufacturer_id" class="block w-full border rounded-lg p-3 mb-4">
-        <% @manufacturers.each do |manufacturer| %>
-          <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
-        <% end %>
-      </select>
+          <label for="manufacturer_id" class="block mb-2">Manufacturer:</label>
+          <select name="booking[manufacturer_id]" id="manufacturer_id" class="block w-full border rounded-lg p-3 mb-4">
+            <% @manufacturers.each do |manufacturer| %>
+              <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+            <% end %>
+          </select>
 
-      <label for="problem_description" class="block mb-2">Describe the Problem:</label>
-      <textarea name="booking[problem_description]" id="problem_description" class="block w-full border rounded-lg p-3 mb-4" rows="4" placeholder="The appliance is not starting or making unusual noises."></textarea>
+          <label for="problem_description" class="block mb-2">Describe the Problem:</label>
+          <textarea name="booking[problem_description]" id="problem_description" class="block w-full border rounded-lg p-3 mb-4" rows="4" placeholder="The appliance is not starting or making unusual noises."></textarea>
 
-      <div class="flex justify-between mt-4">
-        <button id="close_modal" type="button" class="bg-brown text-white py-2 px-4 rounded-lg">Close</button>
-        <button type="button" class="next-button bg-orange text-white py-2 px-4 rounded-lg ml-auto">Next</button>
-      </div>
-    </div>
-
-    <!-- Step 2: Address Details -->
-    <div id="step2" class="step hidden" data-step="2">
-      <h2 class="text-2xl font-bold text-navy mb-4">Enter Contact Information</h2>
-
-      <label for="full_name" class="block mb-2">Name<span class="text-red-500">*</span>:</label>
-      <input type="text" name="client[full_name]" id="full_name" class="block w-full border-2 rounded-lg p-3 mb-4" placeholder="John Doe" required>
-
-      <!-- Flex row for City and ZIP Code with consistent spacing -->
-      <div class="flex  justify-between space-x-4 mb-4">
-        <div class="w-1/2">
-          <label for="postcode" class="block mb-2">ZIP Code<span class="text-red-500">*</span>:</label>
-          <input type="text" name="client[postcode]" id="postcode" class="block w-full border rounded-lg p-3" placeholder="30328" pattern="\b(?:30040|30022|30328|30060|30066|30114|30096|30519|30518|30062|30305|30319|30005|30041)\b" title="Enter a valid ZIP code" required>
+          <div class="flex justify-between mt-4">
+            <button type="button" class="bg-brown text-white py-2 px-4 rounded-lg" data-action="click->booking#closeModal">Close</button>
+            <button type="button" class="next-button bg-orange text-white py-2 px-4 rounded-lg" data-action="click->booking#nextStep" data-booking-target="nextButton">Next</button>
+          </div>
         </div>
 
-        <div class="w-1/2">
-          <label for="city" class="block mb-2">City<span class="text-red-500">*</span>:</label>
-          <input type="text" name="client[city]" id="city" class="block w-full border rounded-lg p-3" placeholder="Atlanta" required>
+        <!-- Step 2: Address Details -->
+        <div id="step2" class="step hidden" data-step="2">
+          <h2 class="text-2xl font-bold text-navy mb-4">Enter Contact Information</h2>
+
+          <label for="full_name" class="block mb-2">Name<span class="text-red-500">*</span>:</label>
+          <input type="text" name="client[full_name]" id="full_name" class="block w-full border rounded-lg p-3 mb-4" placeholder="John Doe" required>
+
+          <div class="flex space-x-4 mb-4">
+            <div class="w-1/2">
+              <label for="zip_code" class="block mb-2">ZIP Code<span class="text-red-500">*</span>:</label>
+              <input type="text" name="client[zip_code]" id="zip_code" class="block w-full border rounded-lg p-3" placeholder="30328" data-booking-target="zipCode" title="Enter a valid ZIP code" required>
+            </div>
+
+            <div class="w-1/2">
+              <label for="city" class="block mb-2">City<span class="text-red-500">*</span>:</label>
+              <input type="text" name="client[city]" id="city" class="block w-full border rounded-lg p-3" data-booking-target="city" placeholder="Atlanta" required>
+            </div>
+          </div>
+
+          <label for="address" class="block mb-2">Address<span class="text-red-500">*</span>:</label>
+          <input type="text" name="client[address]" id="address" class="block w-full border rounded-lg p-3 mb-4" placeholder="4775 Fourth Rail LN" required>
+
+          <label for="phone" class="block mb-2">Phone<span class="text-red-500">*</span>:</label>
+          <input type="text" name="client[phone]" id="phone" class="block w-full border rounded-lg p-3 mb-4" placeholder="1234567890" pattern="\d{10}" title="Enter a 10-digit phone number" required>
+
+          <label for="email" class="block mb-2">E-mail<span class="text-red-500">*</span>:</label>
+          <input type="email" name="client[email]" id="email" class="block w-full border rounded-lg p-3 mb-4" placeholder="johndoe@example.com" required>
+
+          <div class="flex justify-between mt-4">
+            <button type="button" class="prev-button bg-brown text-white py-2 px-4 rounded-lg" data-action="click->booking#prevStep" data-booking-target="prevButton">Back</button>
+            <button type="button" class="next-button bg-orange text-white py-2 px-4 rounded-lg" data-action="click->booking#nextStep" data-booking-target="nextButton">Next</button>
+          </div>
         </div>
-      </div>
 
-      <label for="address" class="block mb-2">Address<span class="text-red-500">*</span>:</label>
-      <input type="text" name="client[address]" id="address" class="block w-full border rounded-lg p-3 mb-4" placeholder="4775 Fourth Rail LN" required>
+        <!-- Step 3: Schedule Date and Time -->
+        <div id="step3" class="step hidden" data-step="3">
+          <h2 class="text-2xl font-bold text-navy mb-4">Schedule Date and Time</h2>
 
-      <label for="phone" class="block mb-2">Phone<span class="text-red-500">*</span>:</label>
-      <input type="text" name="client[phone]" id="phone" class="block w-full border rounded-lg p-3 mb-4" placeholder="1234567890" pattern="\d{10}" title="Enter a 10-digit phone number" required>
+          <label for="repair_date" class="block mb-2">Repair Date:</label>
+          <input type="date" name="booking[repair_date]" id="repair_date" data-controller="flatpickr" data-flatpickr-enable-time="true" class="block w-full border rounded-lg p-3 mb-4 cursor-pointer" data-booking-target="dateInput" placeholder="Select a date">
 
-      <label for="email" class="block mb-2">E-mail<span class="text-red-500">*</span>:</label>
-      <input type="email" name="client[email]" id="email" class="block w-full rounded-lg p-3 mb-4  border" placeholder="johndoe@example.com" required>
+          <label for="half_of_day" class="block mb-2">Preferred Time:</label>
+          <select name="booking[part_of_the_day]" id="part_of_the_day" class="block w-full border rounded-lg p-3 mb-4" data-booking-target="timeSelect">
+            <option value="early_morning">Early Morning</option>
+            <option value="morning">Morning</option>
+            <option value="afternoon">Afternoon</option>
+            <option value="evening">Evening</option>
+          </select>
 
-      <div class="flex justify-between mt-4">
-        <button type="button" class="prev-button bg-brown text-white py-2 px-4 rounded-lg">Back</button>
-        <button type="button" class="next-button bg-orange text-white py-2 px-4 rounded-lg">Next</button>
-      </div>
-    </div>
-
-    <!-- Step 3: Schedule Date and Time -->
-    <div id="step3" class="step hidden" data-step="3">
-      <h2 class="text-2xl font-bold text-navy mb-4">Schedule Date and Time</h2>
-
-      <label for="repair_date" class="block mb-2">Repair Date:</label>
-      <input type="date" name="booking[repair_date]" id="repair_date" class="block w-full border rounded-lg p-3 mb-4 cursor-pointer" placeholder="Select a date">
-
-      <label for="half_of_day" class="block mb-2">Preferred Time:</label>
-      <select name="booking[half_of_day]" id="half_of_day" class="block w-full border rounded-lg p-3 mb-4">
-        <option value="early_morning">Early Morning</option>
-        <option value="morning">Morning</option>
-        <option value="afternoon">Afternoon</option>
-        <option value="evening">Evening</option>
-      </select>
-
-      <div class="flex justify-between mt-4">
-        <button type="button" class="prev-button bg-brown text-white py-2 px-4 rounded-lg">Back</button>
-        <button type="submit" class="bg-teal text-white py-2 px-4 rounded-lg">Book Repair Service</button>
-      </div>
+          <div class="flex justify-between mt-4">
+            <button type="button" class="prev-button bg-brown text-white py-2 px-4 rounded-lg" data-action="click->booking#prevStep" data-booking-target="prevButton">Back</button>
+            <button type="submit" class="bg-teal text-white py-2 px-4 rounded-lg" data-booking-target="submitButton">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-</div>
+</turbo-frame>

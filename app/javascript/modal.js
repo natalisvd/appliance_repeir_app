@@ -168,7 +168,7 @@ document.getElementById('repair_date').addEventListener('focus', function() {
     this.showPicker(); // Show the date picker on focus, supported in modern browsers
 });
 
-document.getElementById('postcode').addEventListener('input', function() {
+document.getElementById('zip_code').addEventListener('input', function() {
     const zipCode = this.value;
     const cityInput = document.getElementById('city');
 

@@ -1,33 +1,28 @@
-# app/controllers/bookings_controller.rb
 class BookingsController < ApplicationController
-  before_action :set_resources, only: [:new, :create]
-
+  def zip_to_city
+    mapping = ZipCodeMapping.find_by(zip_code: params[:zip_code])
+    render json: { city: mapping&.city || "" }
+  end
   def create
-    # Find or create a client based on email
-    client = Client.find_or_initialize_by(email: booking_params[:client][:email])
-    client.update(booking_params[:client])
+    puts 'success'
+    @client = Client.find_or_initialize_by(email: params[:client][:email])
+    @client.assign_attributes(client_params)
+    @booking = Booking.new(booking_params.merge(client: @client))
 
-    # Associate the booking with the client
-    @booking = client.bookings.build(booking_params.except(:client))
-
-    if @booking.save
-      redirect_to root_path, notice: "Booking created successfully!"
+    if @client.save && @booking.save
+      render json: { success: true, message: 'Booking created successfully!' }, status: :created
     else
-      render :new, alert: "Please complete all required fields."
+      render json: { success: false, errors: @client.errors.full_messages + @booking.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   private
 
-  def set_resources
-    @appliances = Appliance.all
-    @manufacturers = Manufacturer.all
+  def booking_params
+    params.require(:booking).permit(:appliance_id, :manufacturer_id, :problem_description, :repair_date, :part_of_the_day)
   end
 
-  def booking_params
-    params.require(:booking).permit(
-      :appliance_id, :manufacturer_id, :model, :age, :repair_date, :half_of_day,
-      client: [:full_name, :phone, :email, :postcode, :building_number, :street, :city]
-    )
+  def client_params
+    params.require(:client).permit(:full_name, :zip_code, :city, :address, :phone, :email)
   end
 end

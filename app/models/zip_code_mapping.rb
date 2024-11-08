@@ -1,0 +1,2 @@
+class ZipCodeMapping < ApplicationRecord
+end

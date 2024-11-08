@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Define the root path route ("/")
   root 'home#index'
   resources :bookings, only: [:new, :create]
+  get 'zip_to_city', to: 'bookings#zip_to_city'
 
 
   # Other routes…

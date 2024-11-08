@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_03_192034) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_08_055035) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,10 +23,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_03_192034) do
   create_table "bookings", force: :cascade do |t|
     t.integer "appliance_id"
     t.integer "manufacturer_id"
-    t.string "model"
-    t.string "age"
+    t.text "problem_description"
     t.integer "client_id"
-    t.string "half_of_day"
+    t.string "part_of_the_day"
     t.date "repair_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,11 +33,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_03_192034) do
 
   create_table "clients", force: :cascade do |t|
     t.string "full_name"
-    t.string "phone"
+    t.integer "phone"
     t.string "email"
-    t.string "postcode"
-    t.string "building_number"
-    t.string "street"
+    t.integer "zip_code"
+    t.string "address"
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,6 +59,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_03_192034) do
     t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "zip_code_mappings", force: :cascade do |t|
+    t.integer "zip_code"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
