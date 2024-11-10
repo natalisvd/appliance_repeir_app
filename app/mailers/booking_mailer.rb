@@ -5,7 +5,7 @@ class BookingMailer < ApplicationMailer
   def new_booking_notification(booking)
     @booking = booking
     mail(
-      to: 'natali.boichencko@gmail.com', # Replace with the administrator's email
+      to: 'gamultiservice11@gmail.com', # Replace with the administrator's email
       subject: "New Booking Received",
       from: 'natalyasvd@gmail.com',
     )

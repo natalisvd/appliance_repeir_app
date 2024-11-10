@@ -26,12 +26,12 @@
     <h2 class="text-4xl font-bold mb-4">Contact Us</h2>
     <p class="text-lg mb-8">Have a question or need assistance?</p>
 
-    <!-- Contact Form -->
-    <%= form_with url: contact_path, method: :post, class: "max-w-md mx-auto grid grid-cols-1 gap-4", local: true do |f| %>
-      <%= f.text_field :name, placeholder: "Name", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true, name: "contact[name]" %>
-      <%= f.telephone_field :phone, placeholder: "Phone", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true, name: "contact[phone]" %>
-      <%= f.email_field :email, placeholder: "Email", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true, name: "contact[email]" %>
-      <%= f.text_area :message, placeholder: "Message", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true, name: "contact[message]" %>
+    <!-- Contact Form with Stimulus Controller -->
+    <%= form_with model: Contact.new, url: contact_path, method: :post, class: "max-w-md mx-auto grid grid-cols-1 gap-4", local: true do |f| %>
+      <%= f.text_field :name, placeholder: "Name", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true %>
+      <%= f.telephone_field :phone, placeholder: "Phone", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true %>
+      <%= f.email_field :email, placeholder: "Email", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true %>
+      <%= f.text_area :message, placeholder: "Message", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true %>
       <%= f.submit "Submit", class: "bg-orange text-white py-2 px-6 rounded hover:bg-brown" %>
     <% end %>
 
@@ -42,6 +42,7 @@
     </div>
   </div>
 </section>
+
 
 
 <section class="bg-cream py-12">
