@@ -25,13 +25,16 @@
   <div class="container mx-auto text-center px-5">
     <h2 class="text-4xl font-bold mb-4">Contact Us</h2>
     <p class="text-lg mb-8">Have a question or need assistance?</p>
+
     <!-- Contact Form -->
-    <form class="max-w-md mx-auto grid grid-cols-1 gap-4">
-      <input type="text" placeholder="Name" class="p-3 rounded bg-white text-black placeholder-gray-500">
-      <input type="text" placeholder="Phone" class="p-3 rounded bg-white text-black placeholder-gray-500">
-      <textarea placeholder="Message" class="p-3 rounded bg-white text-black placeholder-gray-500"></textarea>
-      <button type="submit" class="bg-orange text-white py-2 px-6 rounded hover:bg-brown">Submit</button>
-    </form>
+    <%= form_with url: contact_path, method: :post, class: "max-w-md mx-auto grid grid-cols-1 gap-4", local: true do |f| %>
+      <%= f.text_field :name, placeholder: "Name", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true, name: "contact[name]" %>
+      <%= f.telephone_field :phone, placeholder: "Phone", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true, name: "contact[phone]" %>
+      <%= f.email_field :email, placeholder: "Email", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true, name: "contact[email]" %>
+      <%= f.text_area :message, placeholder: "Message", class: "p-3 rounded bg-white text-black placeholder-gray-500", required: true, name: "contact[message]" %>
+      <%= f.submit "Submit", class: "bg-orange text-white py-2 px-6 rounded hover:bg-brown" %>
+    <% end %>
+
     <!-- Contact Information -->
     <div class="mt-8">
       <p class="text-2xl font-bold">+1 (470) 469-9939</p>
@@ -39,6 +42,8 @@
     </div>
   </div>
 </section>
+
+
 <section class="bg-cream py-12">
   <h2 class="text-4xl font-bold text-center mb-8">What Our Customers Say</h2>
   <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-5">
@@ -57,6 +62,5 @@
 
 
 <%= render 'shared/footer' %>
-<%= render 'bookings/booking_modal' %>
 <%= render 'shared/multi_step_modal' %>
 

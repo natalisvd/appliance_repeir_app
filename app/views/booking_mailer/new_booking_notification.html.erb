@@ -1,0 +1,15 @@
+<!-- app/views/booking_mailer/new_booking_notification.html.erb -->
+<h1>New Booking Received</h1>
+<p>A new booking has been created with the following details:</p>
+
+<p><strong>Appliance:</strong> <%= @booking.appliance.name %></p>
+<p><strong>Manufacturer:</strong> <%= @booking.manufacturer.name %></p>
+<p><strong>Problem Description:</strong> <%= @booking.problem_description %></p>
+<p><strong>Scheduled Date:</strong> <%= @booking.repair_date %> -  <%= @booking.part_of_the_day %></p>
+
+
+<h2>Customer Details</h2>
+<p><strong>Name:</strong> <%= @booking.client.full_name %></p>
+<p><strong>Address:</strong> <%= @booking.client.address %>, <%= @booking.client.city %>, <%= @booking.client.zip_code %></p>
+<p><strong>Phone:</strong> <%= @booking.client.phone %></p>
+<p><strong>Email:</strong> <%= @booking.client.email %></p>

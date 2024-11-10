@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params.merge(client: @client))
 
     if @client.save && @booking.save
+      BookingMailer.new_booking_notification(@booking).deliver_later
       render json: { success: true, message: 'Booking created successfully!' }, status: :created
     else
       render json: { success: false, errors: @client.errors.full_messages + @booking.errors.full_messages }, status: :unprocessable_entity

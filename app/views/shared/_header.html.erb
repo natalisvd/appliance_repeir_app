@@ -16,8 +16,13 @@
   <!-- Centering Content in #hero -->
   <div id="hero" class="flex flex-col items-center justify-center text-center h-full p-10 bg-cover bg-center text-white relative" style="background-image: url(<%= asset_path 'hero_background.png' %>);">
     <!-- Dark Overlay Background -->
-    <div class="absolute inset-0 bg-black opacity-60"></div>
+    <!-- Notification Box -->
 
+    <div id="notification" class="hidden right-5 text-white text-lg font-semibold py-3 px-5 rounded-lg shadow-lg z-50"
+         style="background-color: rgba(56,161,105,0.64); min-width: 250px; text-align: center;">
+      <span id="notificationMessage">Booking created successfully! Our team will contact you shortly.</span>
+    </div>
+    <div class="absolute inset-0 bg-black opacity-60"></div>
     <!-- Content -->
     <div class="relative z-10" data-controller="booking">
       <h1 class="text-6xl font-bold mb-4">Fast & Reliable Home Appliance Repair Services</h1>

@@ -14,7 +14,6 @@ export default class extends Controller {
     this.initializeZipToCityAjax();
     this.initializeDatePicker()
     this.updateAvailableTimes()
-    flatpickr('#repair_date');
   }
 
   initializeZipToCityAjax() {
@@ -56,7 +55,7 @@ export default class extends Controller {
 
     // Add time slots based on the selected date
     timeSlots.forEach(slot => {
-      if (!isToday || today.getHours() < slot.startHour - 3) { // Check if slot is available
+      if (!isToday || today.getHours() < slot.startHour - 1) { // Check if slot is available
         this.addOption(slot.value, slot.label)
       }
     })
@@ -135,6 +134,19 @@ export default class extends Controller {
 
     return isValid;
   }
+  showNotification(message) {
+    const notification = document.getElementById("notification");
+    const notificationMessage = document.getElementById("notificationMessage");
+
+    notificationMessage.textContent = message;
+    notification.classList.remove("hidden");
+
+    // Hide after 5 seconds
+    setTimeout(() => {
+      notification.classList.add("hidden");
+    }, 5000);
+  }
+
 
   handleSubmit(event) {
     event.preventDefault();
@@ -154,13 +166,16 @@ export default class extends Controller {
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            alert("Booking created successfully!");
             this.closeModal();
+            this.showNotification("Booking created successfully! Our team will contact you shortly.");
           } else {
-            alert("Error: " + data.errors.join(', '));
+            this.showNotification("An error occurred: " + data.errors.join(", "));
           }
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error => {
+          this.showNotification("An error occurred. Please try again.");
+          console.error("Error:", error);
+        });
   }
   updateProgress(stepNumber) {
     const progressItems = this.element.querySelectorAll('.progress-item');
