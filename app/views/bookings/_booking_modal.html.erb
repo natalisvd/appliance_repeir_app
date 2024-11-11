@@ -4,7 +4,7 @@
   <div id="bookingModal" data-booking-target="modal" class="fixed inset-0 bg-navy bg-opacity-50 flex items-center justify-center hidden z-50 text-black">
     <div class="bg-cream rounded-lg shadow-lg p-6 w-full max-w-lg relative">
       <!-- Close button -->
-      <button id="close_modal" type="button" class="absolute top-3 right-3 text-navy text-xl cursor-pointer" data-action="click->booking#closeModal">&times;</button>
+<!--      <button id="close_modal" type="button" class="absolute top-3 right-3 text-navy text-xl cursor-pointer" data-action="click->booking#closeModal">&times;</button>-->
 
       <!-- Form Element -->
       <form data-action="submit->booking#handleSubmit">
@@ -100,6 +100,11 @@
             <button type="button" class="prev-button bg-brown text-white py-2 px-4 rounded-lg" data-action="click->booking#prevStep" data-booking-target="prevButton">Back</button>
             <button type="submit" class="bg-teal text-white py-2 px-4 rounded-lg" data-booking-target="submitButton">Submit</button>
           </div>
+        </div>
+        <!-- Fee Notice -->
+        <div class="bg-yellow-100 text-yellow-800 px-3 rounded-lg text-sm">
+          <p class="font-bold">Please Note:</p>
+          <p>A $66 fee applies for a visit from our specialist.</p>
         </div>
       </form>
     </div>

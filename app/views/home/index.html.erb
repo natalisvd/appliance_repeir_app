@@ -48,15 +48,18 @@
 <section class="bg-cream py-12">
   <h2 class="text-4xl font-bold text-center mb-8">What Our Customers Say</h2>
   <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-5">
-    <div>
-      <p class="text-lg">I was very pleased with the service from GA Multi Service. They were able to quickly and efficiently repair my washing machine, and the technician was very friendly and professional.</p>
-      <p class="font-semibold mt-2">John S.</p>
-    </div>
-    <div>
-      <p class="text-lg">GA Multi Service did a great job repairing my refrigerator.</p>
-      <p class="font-semibold mt-2">Jane D.</p>
-    </div>
-    <!-- Add more testimonials as necessary -->
+    <% @reviews.each do |review| %>
+      <div>
+        <p class="text-lg"><%= review.comment %></p>
+        <div class="mt-2">
+          <span class="font-semibold"><%= review.client.full_name %></span>,
+          <span class="text-gray-600"><%= review.client.city %></span>
+        </div>
+        <div class="text-yellow-500">
+          <%= "★" * review.rating %><%= "☆" * (5 - review.rating) %> <!-- Display stars -->
+        </div>
+      </div>
+    <% end %>
   </div>
 </section>
 

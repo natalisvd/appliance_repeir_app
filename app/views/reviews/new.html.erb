@@ -1,0 +1,41 @@
+<!-- app/views/reviews/new.html.erb -->
+
+<section class="bg-cream py-12 px-5 max-w-lg mx-auto rounded-lg shadow-lg" >
+  <!-- Personalized message using the client's name -->
+  <h2 class="text-4xl font-bold text-center mb-8 text-orange-500">Thank you, <%= @client.full_name %>!</h2>
+  <p class="text-center text-lg mb-6">We appreciate your business in <%= @client.city %>. Could you take a moment to rate our service?</p>
+
+  <%= form_with model: @review, url: reviews_path, local: true, class: "space-y-6" do |f| %>
+    <%= f.hidden_field :client_id, value: @client.id %>
+
+    <!-- Display Client's Name and City for reference -->
+    <div class="text-center">
+      <p class="font-semibold text-xl"><%= @client.full_name %> from <%= @client.city %></p>
+    </div>
+
+    <!-- Rating Stars -->
+    <div data-controller="rating">
+      <label class="block text-lg font-semibold mb-2">How would you rate us?</label>
+      <div class="flex space-x-2 text-orange-500">
+        <% 5.times do |i| %>
+          <span class="cursor-pointer text-3xl" data-action="click->rating#setRating" data-rating-target="star" data-value="<%= i + 1 %>">
+            <%= i < @review.rating.to_i ? "★" : "☆" %>
+          </span>
+        <% end %>
+      </div>
+      <%= f.hidden_field :rating, data: { rating_target: "ratingInput" }, class: "rating-input" %>
+    </div>
+
+    <!-- Message Field -->
+    <div>
+      <label class="block text-lg font-semibold mb-2">Leave a message</label>
+      <%= f.text_area :comment, placeholder: "Write us your thoughts...", class: "w-full p-3 h-32 border rounded placeholder-gray-500 text-gray-900" %>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <%= f.submit "Send feedback", class: "bg-orange text-white py-3 px-6 rounded-lg hover:bg-brown transition" %>
+    </div>
+
+  <% end %>
+</section>

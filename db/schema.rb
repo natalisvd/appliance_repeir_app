@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_09_112937) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_11_203331) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_112937) do
 
   create_table "clients", force: :cascade do |t|
     t.string "full_name"
-    t.integer "phone"
+    t.string "phone"
     t.string "email"
     t.integer "zip_code"
     t.string "address"
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_112937) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_reviews_on_client_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -77,4 +86,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_112937) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "reviews", "clients"
 end
