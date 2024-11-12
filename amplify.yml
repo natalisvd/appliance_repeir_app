@@ -3,7 +3,7 @@ backend:
   phases:
     preBuild:
       commands:
-        - rvm use 3.0.0 --install --binary --fuzzy  # Ensure Ruby 3.0.0 is used
+        - rvm use 3.0.0 --install # Ensure Ruby 3.0.0 is used
         - gem install bundler
     build:
       commands:
