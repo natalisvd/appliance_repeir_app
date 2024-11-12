@@ -1,20 +1,23 @@
 version: 1
 backend:
   phases:
-    build:
-      commands:
-        - rvm install "ruby-3.0.0"
-        - rvm use "ruby-3.0.0" --default
-frontend:
-  phases:
     preBuild:
       commands:
-        - yarn install --frozen-lockfile
+        - rvm use 3.0.0 --install --binary --fuzzy  # Ensure Ruby 3.0.0 is used
+        - gem install bundler
     build:
       commands:
         - bundle install
-        - yarn build
+        - yarn install --frozen-lockfile
+        - bundle exec rails assets:precompile
+        - bundle exec rails db:migrate
+        - bundle exec rails db:seeds
+frontend:
   artifacts:
-    baseDirectory: dist
+    baseDirectory: public  # For Rails, typically the final static output would be in 'public' for static sites
     files:
       - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - vendor/bundle/**/*
