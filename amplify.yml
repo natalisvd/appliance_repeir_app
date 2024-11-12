@@ -1,0 +1,20 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - rvm install "ruby-3.0.0"
+        - rvm use "ruby-3.0.0" --default
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - yarn install --frozen-lockfile
+    build:
+      commands:
+        - bundle install
+        - yarn build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'

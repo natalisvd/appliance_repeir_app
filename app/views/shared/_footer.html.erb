@@ -1,4 +1,9 @@
-<!-- app/views/shared/_footer.html.erb -->
-<footer class="bg-navy text-cream text-center p-5">
-  <p>&copy; 2024 Appliance Repair Service. All rights reserved. | Atlanta, Georgia</p>
+<footer class="bg-navy text-white py-6">
+  <div class="container mx-auto flex flex-col items-center">
+    <!-- Logo -->
+    <%= link_to image_tag("smartcare_solution-removebg-preview.png", alt: "Company Logo", style: "height: 55px;"), root_path %>
+
+    <!-- Footer Text -->
+    <p class="mt-4 text-sm">&copy; <%= Time.current.year %> SmartCare Solutions. All rights reserved.</p>
+  </div>
 </footer>
