@@ -1,7 +1,11 @@
 // tailwind.config.js
 module.exports = {
   content: [
-    "./app/**/*.{html,js,erb}", // Update paths as necessary
+    './app/views/**/*.html.erb',
+    './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+    './app/assets/stylesheets/**/*.scss',
+    './app/assets/stylesheets/**/*.css'
   ],
   theme: {
     extend: {

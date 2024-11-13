@@ -7,4 +7,9 @@ class User < ApplicationRecord
 
   # Add validations if desired, e.g., validate presence of role
   validates :role, presence: true
+  before_validation :set_default_role, on: :create
+
+  def set_default_role
+    self.role ||= :admin
+  end
 end
