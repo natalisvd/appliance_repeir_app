@@ -1,18 +1,46 @@
 <%= render 'shared/header' %>
 
 <section id="services" class="bg-white py-12 mt-10">
-  <div class="container mx-auto text-center px-5">
-    <!-- Center-Aligned Title -->
-    <h2 class="text-4xl font-bold mb-4">About GA Multi Service</h2>
-    <p class="text-lg mb-8">GA Multi Service offers friendly, fast, and reliable appliance repair. Our technicians are factory trained and certified, specialized in various appliance repairs. We guarantee prompt resolution and satisfaction.</p>
-    <p class="text-lg mb-12">Our mission is to provide high-quality service with a personal touch. We aim to be the leading provider of home appliance repair services in the Atlanta area and beyond.</p>
+  <div class="container mx-auto px-5">
+    <!-- Center-Aligned Title with Underline Decoration -->
+    <div class="text-center">
+    <h2 class="text-4xl font-bold text-center mb-10 relative inline-block">
+      About GA Multi Service
+      <span class="block h-1 bg-orange-500 w-20 mx-auto mt-2"></span>
+    </h2>
+    </div>
+    <!-- First Row: Text-Image Combination with 2/3 - 1/3 Split -->
+    <div class="bg-gray-50 p-8 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-12">
+      <!-- Text Block (2/3 Width) -->
+      <div class="md:col-span-2 space-y-4">
+        <p class="text-lg text-gray-700 leading-relaxed">
+          GA Multi Service offers friendly, fast, and reliable appliance repair. Our technicians are factory trained and certified, specializing in various appliance repairs. We guarantee prompt resolution and satisfaction.
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          As a locally-operated appliance repair service, GA Multi Service provides customers with friendly, fast, and reliable repairs. Our highly experienced technicians are factory trained and certified, specialized in fixing refrigerators, dishwashers, washing machines, and more. We serve customers in the metro Atlanta areas and surrounding counties.
+        </p>
+      </div>
+      <!-- Image Block (1/3 Width) -->
+      <div class="md:col-span-1">
+        <img src="assets/washing_machine_maintenance.webp" alt="Appliance repair" class="w-full rounded-lg shadow-lg">
+      </div>
+    </div>
 
-    <!-- Image Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto max-w-4xl">
-      <img src="assets/washing_machine_maintenance.webp" alt="Appliance repair" class="w-full rounded-lg shadow-md">
-      <img src="assets/fridge.webp" alt="Appliance maintenance" class="w-full rounded-lg shadow-md">
-      <img src="assets/mikrowave.webp" alt="Kitchen appliances" class="w-full rounded-lg shadow-md">
-      <img src="assets/loundry.webp" alt="Laundry appliances" class="w-full rounded-lg shadow-md">
+    <!-- Second Row: Image-Text Combination with 1/3 - 2/3 Split -->
+    <div class="bg-gray-50 p-8 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-12">
+      <!-- Image Block (1/3 Width) -->
+      <div class="md:col-span-1 order-last md:order-first">
+        <img src="assets/fridge.webp" alt="Appliance maintenance" class="w-full rounded-lg shadow-lg">
+      </div>
+      <!-- Text Block (2/3 Width) -->
+      <div class="md:col-span-2 space-y-4">
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Our vision is to be the leading provider of home appliance repair services by simplifying customers' lives through superior quality repairs backed by outstanding service experiences.
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          GA Multi Service has quickly become the go-to choice for appliance repair services in the USA. Our commitment to customer satisfaction and quality workmanship sets us apart as the leading provider in the industry.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -37,7 +65,7 @@
 
     <!-- Contact Information -->
     <div class="mt-8">
-      <p class="text-2xl font-bold">+1 (470) 469-9939</p>
+      <p class="text-2xl font-bold">+1(470)7076320</p>
       <p>4775 Fourth Rail LN, GA 30040</p>
     </div>
   </div>
@@ -45,7 +73,7 @@
 
 
 
-<section class="bg-cream py-12">
+<section class="bg-white py-12">
   <h2 class="text-4xl font-bold text-center mb-8">What Our Customers Say</h2>
   <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-5">
     <% @reviews.each do |review| %>
@@ -55,7 +83,7 @@
           <span class="font-semibold"><%= review.client.full_name %></span>,
           <span class="text-gray-600"><%= review.client.city %></span>
         </div>
-        <div class="text-yellow-500">
+        <div class="text-[#FF7D00]">
           <%= "★" * review.rating %><%= "☆" * (5 - review.rating) %> <!-- Display stars -->
         </div>
       </div>

@@ -55,7 +55,7 @@ export default class extends Controller {
 
     // Add time slots based on the selected date
     timeSlots.forEach(slot => {
-      if (!isToday || today.getHours() < slot.startHour - 1) { // Check if slot is available
+      if (!isToday || today.getHours() < slot.endHour - 2) { // Check if slot is available
         this.addOption(slot.value, slot.label)
       }
     })

@@ -1,8 +1,8 @@
 <turbo-frame id="booking_modal1">
   <button id="open_booking_modal" data-action="click->booking#openModal" class="bg-orange text-white py-2 px-4 rounded">Book Now</button>
   <!-- app/views/bookings/_booking_modal.html.erb -->
-  <div id="bookingModal" data-booking-target="modal" class="fixed inset-0 bg-navy bg-opacity-50 flex items-center justify-center hidden z-50 text-black">
-    <div class="bg-cream rounded-lg shadow-lg p-6 w-full max-w-lg relative">
+  <div id="bookingModal" data-booking-target="modal" class="fixed inset-0 bg-cream bg-opacity-50 flex items-center justify-center hidden z-50 text-black">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg relative">
       <!-- Close button -->
 <!--      <button id="close_modal" type="button" class="absolute top-3 right-3 text-navy text-xl cursor-pointer" data-action="click->booking#closeModal">&times;</button>-->
 
@@ -102,9 +102,8 @@
           </div>
         </div>
         <!-- Fee Notice -->
-        <div class="bg-yellow-100 text-yellow-800 px-3 rounded-lg text-sm">
-          <p class="font-bold">Please Note:</p>
-          <p>A $66 fee applies for a visit from our specialist.</p>
+        <div class="bg-cream text-black px-3 rounded-lg text-sm mt-2">
+          <p class="font-bold">A $66 fee applies for a visit from our specialist.</p>
         </div>
       </form>
     </div>
